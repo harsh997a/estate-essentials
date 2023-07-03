@@ -1,0 +1,168 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Client Compose</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <style>
+    .ajaxdiv{ 
+            color:red;
+            font-family:italic;
+      }
+
+
+
+    .design{
+  width: 50%;
+  height: 50%;   
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  
+  
+  
+}
+
+
+
+.button1 {
+background-color: white; 
+color: black; 
+border: 2px solid rebeccapurple;
+border-radius: 4px;
+}
+
+input,textarea,select{
+width: 200px;
+}
+
+
+input:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+
+textarea:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+.button1:hover {
+background-color: rebeccapurple;
+transform: scale(1.2);
+transition: all;
+transition-duration: 500ms;
+
+}
+
+
+</style>
+<script>
+  $(document).ready(function(){ 
+  $("#userid").change(function(){
+      // alert("hello")
+      console.log($(this).val());
+  var username = $(this).val();
+  $.ajax({
+      url: "/validate_ip_username/",
+      data:{
+          'username': username
+      },
+      dataType: 'json',
+      success: function(context){
+          if(context.exists){
+              // alert("Username already exists");
+              //$("#data").html("Username already exists");
+
+              $('#userid').after('<div class="ajaxdiv" id="userNameExistence"> username already exists!</div>')
+
+          }
+
+      
+
+              else{
+  $('#userNameExistence').remove();
+      }
+
+          }
+      
+
+      
+          });
+
+  })
+})
+</script>
+
+{%include 'ess_app/common/commoncss.html'%}
+</head>
+<body style="background-image: linear-gradient(to right, rgb(234, 241, 234),rgb(199, 237, 199));" >
+  {%include 'ess_app/common/navbar.html'%}
+
+  <form method="post" action="/consultant_registration/" class="needs-validation">
+    {%csrf_token%}
+        <div class="design">
+            <div style="margin-top: 100px;text-align: center;">
+                <h1 style="font-weight:bold; color: navy;">Consultant Registration</h1>
+                
+            </div>
+        
+            <div style="margin-top: 20px;">
+              <label for="sender">User Id</label>
+              <input style="outline: none; border-radius: 5px;margin-right: 3%;" class="fa-24px" type="input" name="userid" id="userid" placeholder="Enter your user id" required>
+          </div>
+  
+        <div style="margin-top: 10px;">
+          <label for="receiver">Password</label>
+          <input style="outline: none;border-radius: 5px;margin-right: 4%" class="fa-24px" type="password" name="password" placeholder="Enter your password" required>
+        </div>
+  
+        <div style="margin-top: 10px;">
+          <label for="subject">Name</label>
+          <input style="outline: none;border-radius: 4px;margin-left:1%" class="fa-24px" type="text" name="username" placeholder="Enter your name">
+        </div>
+  
+        <div style="margin-top: 10px;">
+            <label for="subject">email</label>
+            <input style="outline: none;border-radius: 4px;" class="fa-24px" type="email" name="useremail" placeholder="Enter your email">
+          </div>   
+        <div style="margin-top: 10px;">
+            <label for="subject">Phone</label>
+            <input style="outline: none;border-radius: 4px;" class="fa-24px" type="tel" name="userphone" placeholder="Enter your phone number">
+          </div>   
+        <div style="margin-top: 10px;">
+          <label for="content">Address</label>
+          <textarea style="outline: none;border-radius: 4px;margin-right: 2%" name="address" id="address" cols="18" rows="5" placeholder="enter your Address" required></textarea>
+        </div> 
+        <div style="margin-top: 10px;">
+            <label for="subject">Experience</label>
+            <input style="outline: none;border-radius: 4px;margin-right: 6%" class="fa-24px" type="text" name="experience" placeholder="Enter your Experience">
+          </div>
+        
+
+        <div style="margin-top:50px;justify-items: center;">
+          <button class="button button1" value="Submit">Submit</button>
+        </div>
+  
+    </div>
+ 
+  </form>
+
+
+  
+  {%include 'ess_app/common/footer.html'%}
+{%include 'ess_app/common/commonjs.html'%}
+<script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html> 

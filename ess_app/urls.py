@@ -1,0 +1,55 @@
+from django.urls import path,include
+from .import views ,message_views,client_views,renter_views,seller_views,vastu_views
+
+urlpatterns=[
+    path("",views.home,name="home"),
+    path("contactus/",views.contactus,name="contactus"),
+    path("aboutus/",views.aboutus,name="aboutus"),
+    path("feedback/",views.feedback,name="feedback"),
+    path("compose/",message_views.compose,name="compose"),
+    path("client_login/",client_views.client_login,name="client_login"),
+    path("renter_login/",renter_views.renter_login,name="renter_login"),
+    path("seller_login/",seller_views.seller_login,name="seller_login"),
+    path("vastu_login/",vastu_views.vastu_login,name="vastu_login"),
+    path("client_home/",client_views.client_home,name="client_home"),
+    path("seller_home/",seller_views.seller_home,name="seller_home"),
+    path("renter_home/",renter_views.renter_home,name="renter_home"),
+    path("vastu_home/",vastu_views.vastu_home,name="vastu_home"),
+    path("consultant_registration/",vastu_views.consultant_registration,name="consultant_registration"),
+    path("client_registration/",client_views.client_registration,name="client_registration"),
+    path("tips/",vastu_views.tips,name="tips"),
+    path("owner_registration/",views.owner_registration,name="owner_registration"),
+    path("inbox/",message_views.inbox,name="inbox"),
+    path("sentItem/",message_views.sentItem,name="sentItem"),
+    path("vastu_signout/",vastu_views.vastu_signout,name="vastu_signout"),
+    path("seller_signout/",seller_views.seller_signout,name="seller_signout"),
+    path("renter_signout/",renter_views.renter_signout,name="renter_signout"),
+    path("client_signout/",client_views.client_signout,name="client_signout"),
+    path("rented_property/",renter_views.rented_property,name="rented_property"),
+    path("seller_property/",seller_views.seller_property,name="seller_property"),
+    path("rented_view/",views.rented_view,name="rented_view"),
+    path("seller_view/",views.seller_view,name="seller_view"),
+    path("citywise_property/",views.citywise_property,name="citywise_property"),
+    path("citywise_rentedhouse/",views.citywise_rentedhouse,name="citywise_rentedhouse"),
+    path("renter_editprofile/",renter_views.renter_editprofile,name="renter_editprofile"),
+    path("client_editprofile/",client_views.client_editprofile,name="client_editprofile"),
+    path("seller_editprofile/",seller_views.seller_editprofile,name="seller_editprofile"),
+    path("vastu_editprofile/",vastu_views.vastu_editprofile,name="vastu_editprofie"),
+    path("validate_ip_username/",views.validate_ip_username,name="validate_ip_username"),
+    path("validate_ip_username/",vastu_views.validate_ip_username,name="validate_ip_username"),
+    path("validate_ip_username/",client_views.validate_ip_username,name="validate_ip_username"),
+    path("validate_ip_username/",message_views.validate_ip_username,name="validate_ip_username"),
+    path("viewcontent/<int:id>",views.viewcontent,name="viewcontent"),
+    path("view_property/",renter_views.view_property,name="view_property"),
+    path("delete_rented/<int:id>/",renter_views.delete_rented,name="delete_rented"),
+    path("property_view/",seller_views.property_view,name="property_view"),
+    path("delete_seller/<int:id>/",seller_views.delete_seller,name="delete_seller"),
+    path("delete_message/",message_views.delete_message,name="delete_message"),
+    path("delete_sentitem/",message_views.delete_sentitem,name="delete_sentitem"),
+    path("predict/",views.ml_predict,name="predict"),
+
+
+
+
+]
+

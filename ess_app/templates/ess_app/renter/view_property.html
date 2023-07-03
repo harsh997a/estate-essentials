@@ -1,0 +1,50 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%include 'ess_app/common/commoncss.html'%}
+    <link rel="stylesheet" href="{%static 'ess_app/css/sidebar.css'%}">
+      <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+<body id="body-pd" style="background-image: linear-gradient(to right, rgb(234, 241, 234),rgb(199, 237, 199));" >
+    {%include 'ess_app/renter/renter_header.html'%}
+<div >
+    {%for r in rented_data%}
+
+    <div class="card" style="width: 18rem;float: left;margin-left: 1%;margin: 2%;">
+      <img class="card-img-top" src="/media/{{r.picture}}" alt="Card image cap" style="height: 200px;">
+    <div class="card-body">
+      <p class="card-text">Property Type:{{r.property_type}}
+      <p class="card-text">Property Price:{{r.rent_price}}
+      <p class="card-text">City:{{r.city}}
+      <p class="card-text">Contact No.:{{r.contact}}
+      <p class="card-text">Address:{{r.address}}  
+      <p class="card-text">Facilities:{{r.facilities}}  
+      <p><a href="/delete_rented/{{r.id}}">Delete</a> </p>  
+  </div>
+  </div>
+{%endfor%}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ <div style="clear: both;">
+{%include 'ess_app/common/footer1.html'%} 
+ </div> 
+{%include 'ess_app/common/commonjs.html'%}
+<script src="{%static 'ess_app/js/sidebar.js'%}"></script>
+<script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>

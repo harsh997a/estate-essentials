@@ -1,0 +1,29 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estate Essentials</title>
+    {%include 'ess_app/common/commoncss.html'%}
+    <link rel="stylesheet" href="{%static 'ess_app/css/sidebar.css'%}">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body id="body-pd">
+    {%include 'ess_app/seller/seller_header.html'%}
+    
+<h1>seller home</h1>
+<div class="col-md-5" style="margin-left: 350;margin-top: 100px;margin-bottom: 100px;">
+<h1> name is 👷{{seller_data.owner_id}} </h1>
+    <h1> password is{{seller_data.password}} </h1>
+    <h1> address is{{seller_data.address}} </h1>
+    <h1> email is{{seller_data.email}} </h1>
+    <h1> phone is{{seller_data.phone}} </h1>
+</div>
+{%include  'ess_app/common/footer1.html'%}       
+{%include  'ess_app/common/commonjs.html'%}
+<script src="{%static 'ess_app/js/sidebar.js'%}"></script>
+<script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>

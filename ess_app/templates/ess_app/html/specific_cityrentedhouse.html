@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estate Essentials</title>
+    {%include 'ess_app/common/commoncss.html'%}
+</head>
+<body style="background-image: linear-gradient(to right, rgb(198, 198, 236), rgb(198, 198, 236));" >
+    {%include 'ess_app/common/navbar.html'%}
+    <h1> Details for city "{{citywise_data.0.city}}"</h1>
+    
+    <div>
+    {%for r in citywise_data%}
+    
+      <div class="card" style="width: 18rem;float: left;margin-left: 1%;">
+        <img class="card-img-top" src="/media/{{r.picture}}" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">Property Type:{{r.property_type}}
+          <p class="card-text">Property Price:{{r.rent_price}}
+          <p class="card-text">City:{{r.city}}
+          <p class="card-text">Contact No.:{{r.contact}}
+          <p class="card-text">Address:{{r.address}}  
+          <p class="card-text">Facilities:{{r.facilities}}      
+      </div>
+      </div>
+    {%endfor%}
+    </div>
+    </form>
+    
+
+
+    <div style="clear: both;">
+      {%include 'ess_app/common/footer.html'%}
+    </div>
+    {%include 'ess_app/common/commonjs.html'%}
+</body>
+</html>

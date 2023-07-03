@@ -1,0 +1,68 @@
+{%extends 'ess_app/renter/renter_base.html'%}
+
+{%block title%}
+Estate Essentials|Inbox
+{%endblock%}
+
+{%block style%}
+body{
+    background-color:cyan
+}
+{%endblock%}
+
+{%block content%}
+<form action="/delete_message/" method="post">
+  {%csrf_token%}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">select</th>
+        <th scope="col">sender id</th>
+        <th scope="col">subject</th>
+        <th scope="col">date</th>
+        <th scope="col">message</th>
+      </tr>
+    </thead>
+    <tbody>
+       {%for m in message_object%}
+       <tr>
+
+        <th>
+          <input type="checkbox" name="checkid" id="checkid" value="{{m.id}}">
+        </th>
+
+        <th scope="col">
+            {{m.sender_id}}
+        </th>
+
+        <th scope="col">
+            {{m.subject}}
+        </th>
+
+        <th scope="col">
+            {{m.date}}
+        </th>
+
+        <th scope="col">
+            {{m.content}}
+        </th>
+
+       </tr>
+       {%endfor%}
+      
+       <tr >
+        <th colspan="5">
+          <div class="text-center">
+          <button class="btn btn-primary"> DELETE</button>
+           </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</form>
+{%endblock%}
+
+
+
+
+

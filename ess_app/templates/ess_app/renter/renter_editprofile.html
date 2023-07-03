@@ -1,0 +1,114 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {%include 'ess_app/common/commoncss.html'%}
+  <link rel="stylesheet" href="{%static 'ess_app/css/sidebar.css'%}">
+  <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+  <title>Estate Esssentials</title>
+  <style>
+    .design{
+  width: 50%;
+  height: 450px;   
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  
+}
+
+
+
+.button1 {
+background-color: white; 
+color: black; 
+border: 2px solid #4CAF50;
+border-radius: 4px;
+}
+
+input,textarea,select{
+width: 200px;
+}
+
+
+input:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+
+textarea:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+.button1:hover {
+background-color: #4CAF50;
+transform: scale(1.2);
+transition: all;
+transition-duration: 500ms;
+
+}
+</style>
+
+  
+{%include 'ess_app/common/commoncss.html'%}
+</head>
+<body id="body-pd" style="background-image: linear-gradient(to right, rgb(234, 241, 234),rgb(199, 237, 199));" >
+  {%include 'ess_app/renter/renter_header.html'%}
+ 
+
+  <form method="post" action="/renter_editprofile/">
+    {%csrf_token%}
+
+
+    <div class="design">
+      <div style="margin-top: 100px;text-align: center;">
+          <h1 style="font-weight:bold; color: navy;">Edit Profile</h1>
+          
+      </div>
+          <div>
+              <label for="phone">Phone</label>
+              <input style="outline: none; border-radius: 5px;" class="fa-24px" type="tel" name="phone" value="{{renter_data.phone}}">
+          </div>
+  
+        <div style="margin-top: 10px;">
+          <label for="email">Email</label>
+          <input style="outline: none;border-radius: 5px;" class="fa-24px" type="email" name="email" value="{{renter_data.email}}">
+        </div>
+  
+        <div style="margin-top: 10px;margin-left: 10px;">
+          <label for="city">City</label>
+          <input style="outline: none;border-radius: 4px;" class="fa-24px" type="text" name="city" value="{{renter_data.city}}">
+        </div>
+   
+
+        <div style="margin-top:50px;justify-items: center;">
+          <button class="button button1" value="Submit">Edit Profile</button>
+        </div>
+  
+      
+    
+  
+    </div>
+  
+  </form>
+
+
+
+
+
+
+
+  {%include 'ess_app/common/commonjs.html'%}
+  {%include  'ess_app/common/footer1.html'%} 
+<script src="{%static 'ess_app/js/sidebar.js'%}"></script>
+<script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>

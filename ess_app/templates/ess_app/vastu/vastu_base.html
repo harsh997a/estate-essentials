@@ -1,0 +1,36 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {%block title%}
+
+
+        {%endblock%}
+    </title>
+    {%include 'ess_app/common/commoncss.html'%}
+    <link rel="stylesheet" href="{%static 'ess_app/css/sidebar.css'%}">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        {%block style%}
+
+        {%endblock%}
+    </style>
+</head>
+<body id="body-pd">
+    {%include "ess_app/vastu/vastu_header.html"%}
+    {%block content%}
+
+
+
+
+    {%endblock%}
+    {%include "ess_app/common/footer1.html"%}
+    {%include 'ess_app/common/commonjs.html'%}
+    <script src="{%static 'ess_app/js/sidebar.js'%}"></script>
+    <script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estate Essentials</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {%include 'ess_app/common/commoncss.html'%}
+    <style>
+      .ajaxdiv{ 
+                color:red;
+                font-family:italic;
+          }
+    </style>
+    <script>
+      $(document).ready(function(){ 
+      $("#clientid").change(function(){
+          // alert("hello")
+          console.log($(this).val());
+      var username = $(this).val();
+      $.ajax({
+          url: "/validate_ip_username/",
+          data:{
+              'username': username
+          },
+          dataType: 'json',
+          success: function(context){
+              if(context.exists){
+                  // alert("Username already exists");
+                  //$("#data").html("Username already exists");
+    
+                  $('#clientid').after('<div class="ajaxdiv" id="userNameExistence"> username already exists!</div>')
+    
+              }
+    
+          
+    
+                  else{
+      $('#userNameExistence').remove();
+          }
+    
+              }
+          
+    
+          
+              });
+    
+      })
+    })
+    </script>
+</head>
+
+<body>
+    {%include 'ess_app/common/navbar.html'%}
+    <!-- message code start from here -->
+{%if messages%}
+{%for m in messages%}
+<!-- <h2>{{m}}</h2> -->
+<div class="text-center" style="margin-left: 25%;margin-top: 10px;">
+<div class="alert alert-{{m.tags}} alert-dismissible fade show w-50" role="alert">
+    <strong><i class="far fa-smile-beam"></i>{{m}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+
+{%endfor%}
+{%endif%}
+
+
+<!-- message code ends here -->
+
+<section class="vh-200 bg-image"
+  style="background-image: linear-gradient(to right,rgb(198, 198, 236),rgb(198, 198, 236));">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5" style="color: crimson;">Client Registration</h2>
+
+              <form method="post" action="/client_registration/" class="needs-validation">
+                {%csrf_token%}
+              
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="clientid" name="clientid"  class="form-control form-control-lg" required/ >
+                  <label class="form-label" for="clientid">User Id</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="password" name="password" class="form-control form-control-lg" required />
+                  <label class="form-label" for="password">Password</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="name" name="name" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="name">Your name</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="email" id="email" name="email"class="form-control form-control-lg" required/>
+                  <label class="form-label" for="email">Your Email</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="tel" id="phone" name="phone" class="form-control form-control-lg" required />
+                  <label class="form-label" for="name">Your phone</label>
+                </div>
+                
+                
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                </div>
+
+                <!-- <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
+                    class="fw-bold text-body"><u>Login here</u></a></p> -->
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+     
+
+ {%include 'ess_app/common/footer.html'%}
+ {%include  'ess_app/common/commonjs.html'%}
+ <script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>
+
+
+

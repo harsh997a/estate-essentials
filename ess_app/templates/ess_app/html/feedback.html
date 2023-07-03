@@ -1,0 +1,186 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Feedback</title>
+  
+  <style>
+    .design{
+  width: 50%;
+  height: 450px;   
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  
+}
+
+
+
+.button1 {
+background-color: white; 
+color: black; 
+border: 2px solid #4CAF50;
+border-radius: 4px;
+}
+
+input,textarea,select{
+width: 200px;
+}
+
+
+input:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+
+textarea:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+.button1:hover {
+background-color: #4CAF50;
+transform: scale(1.2);
+transition: all;
+transition-duration: 500ms;
+
+}
+
+/* //css for star */
+.rate {
+    float: center;    
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float: right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:white;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+    
+}
+.rate > input:checked ~ label {
+    color: red;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color:red;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: red;
+}
+
+</style>
+
+{%include 'ess_app/common/commoncss.html'%}
+</head>
+<body style="background-image: linear-gradient(to right, rgb(198, 198, 236), rgb(198, 198, 236));" >
+  {%include 'ess_app/common/navbar.html'%}
+   <!-- message code start from here -->
+{%if messages%}
+{%for m in messages%}
+<!-- <h2>{{m}}</h2> -->
+<div class="text-center" style="margin-left: 25%;margin-top: 10px;">
+<div class="alert alert-{{m.tags}} alert-dismissible fade show w-50" role="alert">
+    <strong><i class="far fa-smile-beam"></i>{{m}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+
+{%endfor%}
+{%endif%}
+
+
+<!-- message code ends here -->
+  
+  <form method="post" action="/feedback/" class="needs-validation">
+  {%csrf_token%}
+  
+    <div class="design">
+      <div style="margin-top: 100px;text-align: center;">
+          <h1 style="font-weight:bold; color: navy;">Feedback</h1>
+          <p style="font-size:medium;">Your feedback is important for us</p>
+      </div>
+          <div>
+              <i style="color:indigo" class="btn fas fa-lg fa-user"></i>
+              <input style="outline: none; border-radius: 5px;" class="fa-24px" type="text" name="name" placeholder="Enter your name" required>
+          </div>
+  
+        <div style="margin-top: 10px;">
+          <i style="color:indigo;" class="btn fas fa-lg fa-envelope"></i>
+          <input style="outline: none;border-radius: 5px;" class="fa-24px" type="email" name="email" placeholder="Enter your email" required>
+        </div>
+  
+        <div style="margin-top: 10px;">
+          <i style="color:indigo;" class="btn fas fa-lg fa-phone"></i>
+          <input style="outline: none;border-radius: 4px;" class="fa-24px" type="tel" name="phone" placeholder="Enter your phone number">
+        </div>
+  
+        <div style="margin-top: 10px;">
+          <i style="color:indigo;" class="btn fas fa-lg fa-comment-alt"></i>
+          <textarea style="outline: none;border-radius: 4px;" name="feedback" id="feedback" cols="18" rows="5" placeholder="enter your feedback" required></textarea>
+        </div>
+
+          <div>
+          <div class="rate" style="text-align: center;margin-right: 265px;"> 
+                     
+            <input type="radio" id="star5" name="rate" value="5" />
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="rate" value="4" />
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" />
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="rate" value="2" />
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="rate" value="1" />
+            <label for="star1" title="text">1 star</label>
+          </div>
+        </div>
+        
+
+        <div style="margin-top:50px;justify-items: center;">
+          <button class="button button1" value="Submit">Submit</button>
+        </div>
+  
+      
+    
+  
+    </div>
+  </form>
+      
+      
+          
+
+        
+
+        
+
+{%include 'ess_app/common/commonjs.html'%}
+{%include 'ess_app/common/footer.html'%}
+<script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>

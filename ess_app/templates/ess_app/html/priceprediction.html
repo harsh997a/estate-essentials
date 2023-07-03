@@ -1,0 +1,162 @@
+{%load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>viewcontents</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+{%include 'ess_app/common/commoncss.html'%}
+
+
+</head>
+<body>
+<div class="container-fluid" style="background-color:aliceblue">
+<h2 style="text-align:center;color:red;margin-bottom: 0px;">Welcome To ESTATE ESSENTIALS Portal</h2> 
+</div>
+{%include 'ess_app/common/navbar.html'%}
+
+{% if messages %}
+{%for m in messages %}
+<!-- <h2>{{m}}</h2> -->
+<div class="text-center" style="margin-left:25%">
+<div class="alert alert-{{m.tags}} alert-dismissible fade show w-75" role="alert">
+    <strong>{{m}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+
+{%endfor%}
+
+
+{%endif%}
+
+<div class="container h-100">
+	<div class="d-flex justify-content-center">
+		<div class="card mt-5 col-md-5">
+			<div class="card-header">
+			<p class="animate-charcter" style="font-size: 20px;text-align: center"><b><i class="fa fa-inr" aria-hidden="true"></i> Price Prediction</b></p>
+			</div>
+			<div class="card-body">
+				<form method="post" action="/predict/" novalidate class="needs-validation">
+          {%csrf_token%}
+				
+						
+						
+						<div class="input-group mt-3">
+							<div class="input-group-prepend">
+
+								<span class="input-group-text br-15">
+									<i class='fas fa-map-marker'></i></span>
+							</div>
+							<select class="form-select" aria-label="Default select example" name="location" required="required">
+								<option selected disabled value="" >Select Location</option>
+								{%for name in loc%}
+								
+									<option value={{name}}>{{name}}</option>
+									
+
+								{%endfor%}
+							  </select>
+							  <div class="invalid-feedback">
+								Please Select Location
+							  </div>
+							
+						</div>
+
+
+						<div class="input-group mt-3">
+							<div class="input-group-prepend">
+
+								<span class="input-group-text br-15"><i class='fas fa-building'></i></span>
+							</div>
+							<select class="form-select" aria-label="Default select example" name="bhk" required="required">
+								<option selected disabled value="">Select Flat Type</option>
+								{%for ft in flat_type%}
+								
+									<option value={{ft}}>{{ft}}BHK</option>
+									
+
+								{%endfor%}
+							  </select>
+							  <div class="invalid-feedback">
+								Please Select Flat Type
+							  </div>
+							
+						</div>
+
+
+					
+							
+							
+						
+						
+						<div class="input-group mt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"><i class='fas fa-door-closed'></i></span>
+							</div>
+							<select class="form-select" aria-label="Default select example" name="bath" required="required">
+								<option selected disabled value="">Number Of BathRoom</option>
+								{%for b in br%}
+								
+									<option value={{b}}>{{b}}</option>
+									
+
+								{%endfor%}
+							  </select>
+							
+							  <div class="invalid-feedback">
+								Please Select Bathrooms
+							  </div>
+							
+						</div>
+						
+            <div class="input-group mt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15">
+									<i class='fas fa-cube'></i></span>
+							</div>
+
+
+							<select class="form-select" aria-label="Default select example" name="square_feet" required="required">
+								<option selected disabled value="">Select  Sqaure Feet</option>
+								{%for sf in sq%}
+								
+									<option value={{sf}}>{{sf}}</option>
+									
+
+								{%endfor%}
+							  </select>
+							<!-- <input type="text" name="square_feet" required placeholder="Enter squarefeet" class="form-control"/> -->
+							
+							<div class="invalid-feedback">
+								Please Select SquareFeet
+							  </div>
+							
+						</div>
+						
+						
+						
+					</div>
+				
+			<div class="card-footer text-center">
+				<!-- <a class="btn btn-secondary btn-sm" id="add_more"><i class="fas fa-plus-circle"></i> Add</a>
+				<a class="btn btn-secondary btn-sm" id="remove_more"><i class="fas fa-trash-alt"></i> Remove</a> -->
+				<button  style="width: 150px;height: 50px;text-align: center;" class="btn btn-success"><i class="fas fa-arrow-alt-circle-right"></i> <b>Submit</b></button>
+			</div>
+			</form>
+				
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+
+{%include 'ess_app/common/commonjs.html'%}
+{%include 'ess_app/common/footer.html'%}
+<script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>

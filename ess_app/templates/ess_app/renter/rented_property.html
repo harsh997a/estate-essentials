@@ -1,0 +1,155 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{%static 'ess_app/css/sidebar.css'%}">
+  <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Renter Compose</title>
+  
+  <style>
+    .design{
+  width: 50%;
+  height: 450px;   
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  
+}
+
+
+
+.button1 {
+background-color: white; 
+color: black; 
+border: 2px solid #4CAF50;
+border-radius: 4px;
+}
+
+input,textarea,select{
+width: 200px;
+}
+
+
+input:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+
+textarea:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+.button1:hover {
+background-color: #4CAF50;
+transform: scale(1.2);
+transition: all;
+transition-duration: 500ms;
+
+}
+
+</style>
+
+{%include 'ess_app/common/commoncss.html'%}
+<link rel="stylesheet" href="{%static 'ess_app/css/sidebar.css'%}">
+  <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body id="body-pd" style="background-image: linear-gradient(to right, rgb(234, 241, 234),rgb(199, 237, 199));" >
+  {%include 'ess_app/renter/renter_header.html'%}
+  <!-- message code start from here -->
+ {%if messages%}
+ {%for m in messages%}
+ <!-- <h2>{{m}}</h2> -->
+ <div class="text-center" style="margin-left: 35%;margin-top: 80px;">
+ <div class="alert alert-{{m.tags}} alert-dismissible fade show w-50" role="alert">
+     <strong><i class="far fa-smile-beam"></i>{{m}}</strong>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+ </div>
+ 
+ {%endfor%}
+ {%endif%}
+ 
+ 
+ <!-- message code ends here -->
+  <form class="needs-validation" method="post" action="/rented_property/" enctype="multipart/form-data">
+    {%csrf_token%}
+  
+  
+    <div class="design">
+      <div style="margin-top: 100px;text-align: center;">
+          <h1 style="font-weight:bold; color: navy;">Property Owner</h1>
+          
+      </div>
+          <div>
+              <label for="ownername">Owner Name</label>
+              <input style="outline: none; border-radius: 5px;" class="fa-24px" type="text" name="name" placeholder="Enter your owner name" value="{{owner_id}}" readonly required>
+          </div>
+  
+        <div style="margin-top: 10px;margin-right: 30px;">
+          <label for="property">Property Type</label>
+          <input style="outline: none;border-radius: 5px;" class="fa-24px" type="text" name="property" placeholder="Enter your property type" required>
+        </div>
+
+        <div style="margin-top: 10px;">
+          <label for="price">Rent Price</label>
+          <input style="outline: none;border-radius: 5px;" class="fa-24px" type="text" name="price" placeholder="Enter your Rent Price" required>
+        </div>
+    
+        <div style="margin-top: 10px;">
+          <label for="facilities">Facilities</label>
+          <textarea style="outline: none;border-radius: 4px;" name="facilities" id="facilities" cols="18" rows="5" placeholder="Enter your Facilities" required></textarea>
+        </div>        
+
+         <div style="margin-top: 10px;margin-left: 55px;">
+            <label for="city">City</label>
+            <select name="city" id="city">
+            <option value="gkp">Gorakpur</option>
+            <option value="lko">Lucknow</option>
+            <option value="vns">Banaras</option>
+            <option value="knp">Kanpur</option>
+            </select>
+           </div> 
+        
+        <div style="margin-top: 10px;margin-left: 22px;">
+            <label for="address">Address</label>
+            <textarea style="outline: none;border-radius: 4px;" name="address" id="address" cols="18" rows="5" placeholder="Enter your address" required></textarea>
+        </div>       
+        
+        <div style="margin-top: 10px;margin-right: 50px;">
+            <label for="contact">Contact Number</label>
+            <input style="outline: none;border-radius: 5px;" class="fa-24px" type="text" name="contact" placeholder="Enter your contact number" required>
+          </div>
+        
+        <div style="margin-top: 10px;margin-left: 5px;">
+            <label for="pictures">Pictures</label>
+            <input style="outline: none;border-radius: 5px;" class="fa-24px" type="file" name="pictures" placeholder="Enter your property pictures" required>
+          </div>     
+
+
+
+        <div style="margin-top:50px;justify-items: center;">
+          <button class="button button1" value="Submit">Submit</button>
+        </div>
+  
+      
+    
+  
+    </div>
+  </form>
+      
+      
+{%include 'ess_app/common/commonjs.html'%}
+<script src="{%static 'ess_app/js/sidebar.js'%}"></script>
+<script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>

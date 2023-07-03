@@ -1,0 +1,133 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Query</title>
+  
+  <style>
+    .design{
+  width: 50%;
+  height: 450px;   
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  
+}
+
+
+
+.button1 {
+background-color: white; 
+color: black; 
+border: 2px solid #4CAF50;
+border-radius: 4px;
+}
+
+input,textarea,select{
+width: 200px;
+}
+
+
+input:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+
+textarea:hover{
+width: 250px;
+transition: all;
+transition-duration: 500ms;
+}
+
+.button1:hover {
+background-color: #4CAF50;
+transform: scale(1.2);
+transition: all;
+transition-duration: 500ms;
+
+}
+
+
+</style>
+
+{%include 'ess_app/common/commoncss.html'%}
+</head>
+<body style="background-image: linear-gradient(to right, rgb(198, 198, 236), rgb(198, 198, 236));" >
+  {%include 'ess_app/common/navbar.html'%}
+
+  <!-- message code start from here -->
+{%if messages%}
+{%for m in messages%}
+<!-- <h2>{{m}}</h2> -->
+<div class="text-center" style="margin-left: 25%;margin-top: 10px;">
+<div class="alert alert-{{m.tags}} alert-dismissible fade show w-50" role="alert">
+    <strong><i class="far fa-smile-beam"></i>{{m}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+
+{%endfor%}
+{%endif%}
+
+
+<!-- message code ends here -->
+  
+  <form method="post" action="/contactus/" class="needs-validation">
+  {%csrf_token%}
+  
+    <div class="design">
+      <div style="margin-top: 100px;text-align: center;">
+          <h1 style="font-weight:bold; color: navy;">Contact Us</h1>
+          <p style="font-size:medium;">Write your details so we can cantact you</p>
+      </div>
+          <div>
+              <i style="color:indigo" class="btn fas fa-lg fa-user"></i>
+              <input style="outline: none; border-radius: 5px;" class="fa-24px" type="text" name="name" placeholder="Enter your name" required>
+          </div>
+  
+        <div style="margin-top: 10px;">
+          <i style="color:indigo;" class="btn fas fa-lg fa-envelope"></i>
+          <input style="outline: none;border-radius: 5px;" class="fa-24px" type="email" name="email" placeholder="Enter your email" required>
+        </div>
+  
+        <div style="margin-top: 10px;">
+          <i style="color:indigo;" class="btn fas fa-lg fa-phone"></i>
+          <input style="outline: none;border-radius: 4px;" class="fa-24px" type="tel" name="phone" placeholder="Enter your phone number">
+        </div>
+  
+        <div style="margin-top: 10px;">
+          <i style="color:indigo;" class="btn fas fa-lg fa-comment-alt"></i>
+          <textarea style="outline: none;border-radius: 4px;" name="query" id="query" cols="18" rows="5" placeholder="Enter your Query" required></textarea>
+        </div>        
+
+        <div style="margin-top:50px;justify-items: center;">
+          <button class="button button1" value="Submit">Submit</button>
+        </div>
+  
+      
+    
+  
+    </div>
+  </form>
+      
+      
+          
+
+        
+
+        
+
+{%include 'ess_app/common/commonjs.html'%}
+{%include 'ess_app/common/footer.html'%}
+<script src="{%static 'ess_app/js/validation.js'%}"></script>
+</body>
+</html>
