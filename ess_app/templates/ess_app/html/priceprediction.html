@@ -12,10 +12,12 @@
 
 </head>
 <body>
+	{%include 'ess_app/common/navbar.html'%}
+
 <div class="container-fluid" style="background-color:aliceblue">
 <h2 style="text-align:center;color:red;margin-bottom: 0px;">Welcome To ESTATE ESSENTIALS Portal</h2> 
 </div>
-{%include 'ess_app/common/navbar.html'%}
+
 
 {% if messages %}
 {%for m in messages %}
@@ -28,8 +30,6 @@
 </div>
 
 {%endfor%}
-
-
 {%endif%}
 
 <div class="container h-100">
@@ -40,7 +40,7 @@
 			</div>
 			<div class="card-body">
 				<form method="post" action="/predict/" novalidate class="needs-validation">
-          {%csrf_token%}
+            {%csrf_token%}
 				
 						
 						
@@ -55,7 +55,6 @@
 								{%for name in loc%}
 								
 									<option value={{name}}>{{name}}</option>
-									
 
 								{%endfor%}
 							  </select>

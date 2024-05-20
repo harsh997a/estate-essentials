@@ -109,7 +109,7 @@ transition-duration: 500ms;
 </head>
 <body style="background-image: linear-gradient(to right, rgb(234, 241, 234),rgb(199, 237, 199));" >
 
-  
+  {%include 'ess_app/common/navbar.html'%}
   <form method="post" action="/owner_registration/" class="needs-validation">
     {%csrf_token%}
     <div class="design">
